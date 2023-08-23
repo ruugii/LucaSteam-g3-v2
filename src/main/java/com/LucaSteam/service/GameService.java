@@ -18,8 +18,6 @@ public interface GameService {
 	public Optional<Game> findById(int id);
 	
 	public void deleteById(int id);
-	
-	public Optional<Platform> findByPlatform(Platform platform);
-	
+
 	public List<DTOGames> findAllDTOGames();
 }

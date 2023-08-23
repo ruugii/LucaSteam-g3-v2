@@ -20,6 +20,11 @@ public class GameServiceImpl implements GameService{
 	public List<Game> findAll() {
 		return gameRepo.findAll();
 	}
+	
+	@Override
+	public List<DTOGames> findAllDTOGames() {
+		return gameRepo.findAllDTOGames();
+	}
 
 	@Override
 	public void save(Game game) {

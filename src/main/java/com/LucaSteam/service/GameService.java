@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.LucaSteam.model.Game;
+import com.LucaSteam.model.Platform;
 
 public interface GameService {
 	
@@ -17,4 +18,5 @@ public interface GameService {
 	
 	public void deleteById(int id);
 	
+	public Optional<Platform> findByPlatform(Platform platform);
 }

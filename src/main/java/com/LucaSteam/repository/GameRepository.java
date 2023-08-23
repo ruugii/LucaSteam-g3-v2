@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.LucaSteam.model.Game;
+import com.LucaSteam.model.Platform;
 
 public interface GameRepository extends JpaRepository<Game,Integer>{
 	
@@ -14,4 +15,6 @@ public interface GameRepository extends JpaRepository<Game,Integer>{
 	 *  
 	 */
 	public Optional<Game> update(Game game);
+	
+	public Optional<Platform> findByPlatform(Platform platform);
 }

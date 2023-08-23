@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.LucaSteam.model.Game;
+import com.LucaSteam.model.Platform;
 import com.LucaSteam.repository.GameRepository;
 
 public class GameServiceImpl implements GameService{
@@ -33,6 +34,11 @@ public class GameServiceImpl implements GameService{
 	@Override
 	public void deleteById(int id) {
 		gameRepo.deleteById(id);
+	}
+
+	@Override
+	public Optional<Platform> findByPlatform(Platform platform) {
+		return gameRepo.findByPlatform(platform);
 	}
 
 }

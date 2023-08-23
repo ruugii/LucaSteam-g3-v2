@@ -7,16 +7,18 @@ import javax.persistence.*;
 public class Game {
     private long id;
     private String name;
-    private String description;
+    private int year;
+    private long sales;
 
     public Game() {
         super();
     }
 
-    public Game(String name, String description) {
+    public Game(String name, int year, long sales) {
         super();
         this.name = name;
-        this.description = description;
+        this.year = year;
+        this.sales = sales;
     }
 
     @Id
@@ -39,11 +41,19 @@ public class Game {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public int getYear() {
+        return year;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public long getSales() {
+        return sales;
+    }
+
+    public void setSales(long sales) {
+        this.sales = sales;
     }
 }

@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.LucaSteam.model.Game;
@@ -25,9 +26,14 @@ public interface GameRepository extends JpaRepository<Game,Integer>{
 	
 	public List<DTOGames> findAllDTOGames();
 	
-	public Optional<Genre> findByName(Genre genre);
+	@Query("FROM Platform WHERE platform_name =?1")
+	public String findPlatformByName(String platform_name);
 	
-	public Optional<Platform> findByName(Platform platform);
+	@Query("FROM Genre WHERE genre_name =?1")	
+	public String findGenreByName(String genre_name);
 	
-	public Optional<Publisher> findByName(Publisher publisher);
+	@Query("FROM Publisher WHERE publisher_name =?1")
+	public String findPublisherByName(String publisher_name);
+	
+	
 }

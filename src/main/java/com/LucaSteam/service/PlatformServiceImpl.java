@@ -1,21 +1,18 @@
 package com.LucaSteam.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.LucaSteam.model.Platform;
-import com.LucaSteam.repository.GameRepository;
+import com.LucaSteam.repository.PlatformRepository;
 
 @Service
 public class PlatformServiceImpl implements PlatformService{
 	
 	@Autowired
-	private GameRepository gameRepo;
+	private PlatformRepository platRepo;
 
 	@Override
-	public Optional<Platform> findByName(Platform platform) {
-		return gameRepo.findByName(platform);
+	public String findPlatformByName(String platform_name) {
+		return platRepo.findPlatformByName(platform_name);
 	}
 }

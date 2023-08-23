@@ -1,22 +1,23 @@
 package com.LucaSteam.service;
 
-import java.util.Optional;
-
+import com.LucaSteam.model.Platform;
+import com.LucaSteam.model.Publisher;
+import com.LucaSteam.repository.PlatformDAO;
+import com.LucaSteam.repository.PublisherDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.LucaSteam.model.Publisher;
-import com.LucaSteam.repository.GameRepository;
-
 @Service
-public class PublisherServiceImpl implements PublisherService{
-	
-	@Autowired
-	private GameRepository gameRepo;
+public class PublisherServiceImpl implements PublisherService {
+    @Autowired
+    private PublisherDAO publisherDAO;
+    @Override
+    public void save(Publisher p) {
+        publisherDAO.save(p);
+    }
 
-	@Override
-	public Optional<Publisher> findByName(Publisher publisher) {
-		return gameRepo.findByName(publisher);
-	}
-
+    @Override
+    public Publisher findByName(String name) {
+        return publisherDAO.findByName(name);
+    }
 }

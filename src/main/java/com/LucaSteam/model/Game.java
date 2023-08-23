@@ -5,10 +5,26 @@ import javax.persistence.*;
 @Entity
 @Table(name = "game")
 public class Game {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_game")
     private long id;
+    @Column(name = "game_name")
     private String name;
+    @Column(name = "year")
     private int year;
+    @Column(name = "sales")
     private long sales;
+
+    @ManyToOne
+    @JoinColumn(name = "id_platform")
+    private Platform platformId;
+    @ManyToOne
+    @JoinColumn(name = "id_genre")
+    private Genre genreId;
+    @ManyToOne
+    @JoinColumn(name = "id_publisher")
+    private Publisher publisherId;
 
     public Game() {
         super();
@@ -20,10 +36,6 @@ public class Game {
         this.year = year;
         this.sales = sales;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_game")
 
     public long getId() {
         return id;
@@ -55,5 +67,29 @@ public class Game {
 
     public void setSales(long sales) {
         this.sales = sales;
+    }
+
+    public Platform getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(Platform platformId) {
+        this.platformId = platformId;
+    }
+
+    public Genre getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(Genre genreId) {
+        this.genreId = genreId;
+    }
+
+    public Publisher getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(Publisher publisherId) {
+        this.publisherId = publisherId;
     }
 }

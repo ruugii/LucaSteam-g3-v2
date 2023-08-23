@@ -8,9 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="entity")
+@Table(name="publisher")
 public class Publisher {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_publisher")
 	private long id_publisher;
+
+	@Column(name = "publisher_name")
 	private String publisher_name;
 	
 	public Publisher() {
@@ -21,9 +27,6 @@ public class Publisher {
 		this.publisher_name = publisher_name;
 	}
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_publisher")
 	public long getId_publisher() {
 		return id_publisher;
 	}

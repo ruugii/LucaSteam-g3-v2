@@ -1,0 +1,62 @@
+package com.LucaSteam.component;
+
+import com.LucaSteam.service.CreateObjects.CreateObjectGame;
+import com.LucaSteam.utilities.DocumentRead;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+import com.LucaSteam.service.GameServiceImpl;
+
+import java.util.ArrayList;
+
+@Component
+public class GameComponent implements ApplicationRunner {
+    private GameServiceImpl gameServiceImpl;
+
+    @Autowired
+    public GameComponent(GameServiceImpl gameServiceImpl) {
+        this.gameServiceImpl = gameServiceImpl;
+    }
+
+    public void run(ApplicationArguments args){
+        ArrayList<String> games = new ArrayList<>();
+        games = DocumentRead.InicialData("src/main/java/com/LucaSteam/resources/files/data.csv");
+        if (gameServiceImpl.findAll().size() == 0) {
+            for (String line : games) {
+                String[] hasComilllas = line.split("\"");
+                String[] separateComa = line.split(",");
+                try {
+                    if (line.contains(",") && line.split(",").length >= 5) {
+                        if (!separateComa[1].contains("\"")) {
+                            String[] aux = line.split(",");
+                            if (aux[3].equalsIgnoreCase("N/A")) {
+                                gameServiceImpl.save(CreateObjectGame.createGame(aux[1], aux[2], 0, aux[4], aux[5]));
+                            } else {
+                                gameServiceImpl.save(CreateObjectGame.createGame(aux[1], aux[2], Integer.parseInt(aux[3]), aux[4], aux[5]));
+                            }
+                        } else {
+                            String[] aux = hasComilllas[2].split(",");
+                            if (aux[2].equalsIgnoreCase("N/A")) {
+                                gameServiceImpl.save(CreateObjectGame.createGame(
+                                        "\"" + hasComilllas[1] + "\"",
+                                        aux[1], 0, aux[3], aux[4]
+                                ));
+                            } else {
+                                gameServiceImpl.save(CreateObjectGame.createGame(
+                                        "\"" + hasComilllas[1] + "\"",
+                                        aux[1], Integer.parseInt(aux[2]), aux[3], aux[4]
+                                ));
+                            }
+
+                        }
+                    }
+                } catch (Error e){
+                    System.out.println("Error");
+                }
+
+            }
+        }
+    }
+
+}

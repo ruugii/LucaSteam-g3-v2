@@ -1,11 +1,13 @@
 package com.LucaSteam.service;
 
-import java.util.Optional;
-
+import com.LucaSteam.model.Game;
 import com.LucaSteam.model.Genre;
+import com.LucaSteam.model.Platform;
+import org.springframework.stereotype.Service;
 
 public interface GenreService {
-	
-	public Optional<Genre> findByName(Genre genre);
 
+    public void save(Genre g);
+
+    public Genre findByName(String name);
 }

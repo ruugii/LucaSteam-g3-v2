@@ -1,7 +1,16 @@
 package com.LucaSteam.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "genre")
 public class Genre {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id_genre")
     private long id;
+
+   @Column(name = "genre_name")
     private String name;
 
     public Genre() {

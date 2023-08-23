@@ -45,10 +45,4 @@ public class GameServiceImpl implements GameService{
 	public void deleteById(int id) {
 		gameRepo.deleteById(id);
 	}
-
-	@Override
-	public Optional<Platform> findByPlatform(Platform platform) {
-		return gameRepo.findByPlatform(platform);
-	}
-
 }

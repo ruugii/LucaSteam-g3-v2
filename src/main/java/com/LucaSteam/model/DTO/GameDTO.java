@@ -3,6 +3,9 @@ package com.LucaSteam.model.DTO;
 import javax.validation.constraints.*;
 import java.util.Date;
 
+/**
+ * Data Transfer Object (DTO) representing a Game with associated information.
+ */
 public class GameDTO {
 
     long id;

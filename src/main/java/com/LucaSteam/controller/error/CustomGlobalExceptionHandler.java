@@ -18,19 +18,46 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
+/**
+ * Global exception handler to customize error responses.
+ */
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	/**
+     * Handles GameNotFoundException and sends a NOT_FOUND response.
+     *
+     * @param response The HttpServletResponse.
+     * @throws IOException If an I/O error occurs.
+     */
     @ExceptionHandler(GameNotFoundException.class)
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }
 
+    
+    /**
+     * Handles ConstraintViolationException and sends a BAD_REQUEST response.
+     *
+     * @param response The HttpServletResponse.
+     * @throws IOException If an I/O error occurs.
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     public void constraintViolationException(HttpServletResponse response) throws IOException {
         System.out.println("------ ConstraintViolationException() ");
         response.sendError(HttpStatus.BAD_REQUEST.value());
     }
 
+    /**
+     * Handles validation errors and constructs a custom error response.
+     *
+     * @param ex      The MethodArgumentNotValidException.
+     * @param headers The HttpHeaders.
+     * @param status  The HttpStatus.
+     * @param request The WebRequest.
+     * @return A ResponseEntity containing the custom error response.
+     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status,
@@ -53,6 +80,15 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(customError, headers, status);
     }
 
+    /**
+     * Handles HttpRequestMethodNotSupportedException and constructs a custom error response.
+     *
+     * @param ex      The HttpRequestMethodNotSupportedException.
+     * @param headers The HttpHeaders.
+     * @param status  The HttpStatus.
+     * @param request The WebRequest.
+     * @return A ResponseEntity containing the custom error response.
+     */
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
                                                                          HttpHeaders headers, HttpStatus status, WebRequest request) {

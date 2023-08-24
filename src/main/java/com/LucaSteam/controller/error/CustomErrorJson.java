@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
+/**
+ * Custom class representing JSON structure for error responses.
+ */
 public class CustomErrorJson {
     private String timestamp;
     private int status;

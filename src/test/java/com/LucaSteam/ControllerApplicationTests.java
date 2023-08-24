@@ -1,5 +1,6 @@
 package com.LucaSteam;
 
+import com.LucaSteam.model.Game;
 import com.LucaSteam.service.GameServiceImpl;
 import com.LucaSteam.service.GenreService;
 import com.LucaSteam.utilities.DocumentRead;

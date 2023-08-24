@@ -1,7 +1,6 @@
 package com.LucaSteam.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.LucaSteam.model.DTO.GameDTO;
 import com.LucaSteam.model.Publisher;
@@ -12,6 +11,7 @@ import com.LucaSteam.service.PublisherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +24,11 @@ import com.LucaSteam.model.Genre;
 import com.LucaSteam.model.Platform;
 import com.LucaSteam.service.GameService;
 
+import javax.validation.Valid;
 
 
 @RestController
+@Validated
 @RequestMapping("/game")
 public class GameController {
 
@@ -42,8 +44,10 @@ public class GameController {
 	private PublisherService publisherServ;
 
 	@PostMapping
-	public Game save(@RequestBody GameDTO gameDTO) {
+	public Game save(@Valid @RequestBody GameDTO gameDTO) {
+		System.out.println("------ save (POST) " + gameDTO);
 		Game game = CreateObjectGame.createGame(gameDTO.getName(), gameDTO.getPlatform(), gameDTO.getYear(), gameDTO.getGenre(), gameDTO.getPublisher(), String.valueOf(gameDTO.getSales()));
+		System.out.println("------ save (POST) " + game);
 		logger.info("------ save (POST)");
 		this.gameServ.save(game);
 		Game result = gameServ.findByName(game.getName());

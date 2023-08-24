@@ -26,6 +26,7 @@ public class CreateObjectGame {
     }
 
     public static Game createGame(String name, String platform, int year, String genre, String publisher, String sales) {
+        System.out.println("save (POST)");
         Game g = new Game();
         String floatStr = sales;
         float floatVal = Float.parseFloat(floatStr);

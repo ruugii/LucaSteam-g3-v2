@@ -1,14 +1,7 @@
 package com.LucaSteam.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.LucaSteam.model.DTO.GameDTO;
-import com.LucaSteam.model.Publisher;
-import com.LucaSteam.service.CreateObjects.CreateObjectGame;
-import com.LucaSteam.service.GenreService;
-import com.LucaSteam.service.PlatformService;
-import com.LucaSteam.service.PublisherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +10,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LucaSteam.model.Game;
 import com.LucaSteam.model.Genre;
 import com.LucaSteam.model.Platform;
+import com.LucaSteam.model.Publisher;
+import com.LucaSteam.model.DTO.GameDTO;
 import com.LucaSteam.service.GameService;
+import com.LucaSteam.service.GenreService;
+import com.LucaSteam.service.PlatformService;
+import com.LucaSteam.service.PublisherService;
+import com.LucaSteam.service.CreateObjects.CreateObjectGame;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 
 @RestController
 @RequestMapping("/game")
+@Tag(name = "game", description = "the Game API")
 public class GameController {
 
 	private static final Logger logger = LoggerFactory.getLogger(GameController.class);
@@ -51,9 +59,18 @@ public class GameController {
 		return result;
 	}
 
+	
+	//TODAVIA A MEDIAS, DA RESULTADO EN NAVEGADOR CON http://127.0.0.1:3000/v3/api-docs
+	@Operation(summary = "Search Games by ID", description = "Gived an ID, returns and object Game", tags= {"game"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Game located", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class)) }),
+			@ApiResponse(responseCode = "400", description = "Not valid (NOT implemented) ", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Game not found (NOT implemented)", content = @Content) })
 	@GetMapping
-	// @RequestMapping(method = RequestMethod.GET)
+	//@RequestMapping(method = RequestMethod.GET)
 	public List<Game> findAll() {
+		//@Parameter(description = "ID del estudiante a localizar", required=true) 
 		return gameServ.findAll();
 	}
 

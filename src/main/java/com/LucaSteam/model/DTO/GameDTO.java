@@ -1,8 +1,11 @@
 package com.LucaSteam.model.DTO;
 
 
+import javax.persistence.Id;
+
 public class GameDTO {
 
+    @Id
     long id;
     private String name;
     private int year;
@@ -13,16 +16,6 @@ public class GameDTO {
 
     public GameDTO() {
         super();
-    }
-
-    public GameDTO(String name, int year, long sales, String platform, String genre, String publisher) {
-        super();
-        this.name = name;
-        this.year = year;
-        this.sales = sales;
-        this.platform = platform;
-        this.genre = genre;
-        this.publisher = publisher;
     }
 
     public String getName() {

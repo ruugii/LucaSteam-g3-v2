@@ -60,6 +60,7 @@ public class GameController {
 	//return platformServ.findById(id).orElseThrow(StudentNotFoundException::new);
 	//falta preparar las excepciones para postman
 
+	//TODO: IMPLEMENTAR EL METODO DE BUSQUEDA POR NOMBRE DE PLATAFORMA
 	@GetMapping("/{platform_name}")
 	public Platform findByNamePlatform(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 

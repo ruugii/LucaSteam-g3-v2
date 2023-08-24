@@ -12,12 +12,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+
+/**
+ * Custom implementation of error attributes for handling error responses.
+ */
 @Component
 public class CustomErrorAttributes extends DefaultErrorAttributes {
     private static final Logger logger = LoggerFactory.getLogger(CustomErrorAttributes.class);
 
     private static final DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
+    /**
+     * Generates customized error attributes for the error response.
+     *
+     * @param webRequest The web request containing the error.
+     * @param options    The options for customizing the error attributes.
+     * @return A map of customized error attributes.
+     */
     @Override
     public Map<String, Object> getErrorAttributes(WebRequest wr, ErrorAttributeOptions options) {
         logger.info("------ getErrorAttributes(): " + options);

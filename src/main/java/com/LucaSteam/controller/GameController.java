@@ -54,6 +54,11 @@ public class GameController {
 	@Autowired
 	private PublisherService publisherServ;
 
+	/**
+	 * Given an object gameDTO
+	 * Created a Game whit @param gameDTO
+	 * Created a result whit (DDBB -> Game) @param called by the name 
+	 * @return that game if exist	 * */
 	@PostMapping
 	public Game save(@Valid @RequestBody GameDTO gameDTO) {
 		System.out.println("------ save (POST) " + gameDTO);
@@ -72,6 +77,7 @@ public class GameController {
 	}
 	
 	// http://127.0.0.1:3000/v3/api-docs
+	// http://127.0.0.1:3000/swagger-ui/index.html#/
 	@Operation(summary = "Search Games by ID", description = "Gived an ID, returns and object Game", tags= {"game"})
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Game located", content = {

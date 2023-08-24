@@ -1,7 +1,10 @@
 package com.LucaSteam.service;
 
+import com.LucaSteam.model.Publisher;
+
 public interface PublisherService {
-	
-	public String findPublisherByName(String publisher_name);
+    public void save(Publisher p);
+
+    public Publisher findByName(String name);
 
 }

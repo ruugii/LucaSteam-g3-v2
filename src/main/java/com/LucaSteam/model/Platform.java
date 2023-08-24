@@ -11,8 +11,12 @@ import javax.persistence.Table;
 @Table(name = "platform")
 public class Platform {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_platform")
     private long id_platform;
+
+    @Column(name = "platform_name")
     private String platform_name;
 
 
@@ -24,10 +28,6 @@ public class Platform {
         super();
         this.platform_name = platform_name;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_game")
 
     public long getId() {
         return id_platform;

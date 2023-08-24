@@ -60,7 +60,7 @@ public class GameController {
 	}
 
 	
-	//TODAVIA A MEDIAS, DA RESULTADO EN NAVEGADOR CON http://127.0.0.1:3000/v3/api-docs
+	// http://127.0.0.1:3000/v3/api-docs
 	@Operation(summary = "Search Games by ID", description = "Gived an ID, returns and object Game", tags= {"game"})
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Game located", content = {

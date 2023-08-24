@@ -23,10 +23,8 @@ public class GameComponent implements ApplicationRunner {
         ArrayList<String> games = new ArrayList<>();
         games = DocumentRead.InicialData("src/main/java/com/LucaSteam/resources/files/data.csv");
         if (games == null) {
-            System.out.println("No hay datos en el archivo");
             return;
         } else if (games.size() == 0) {
-            System.out.println("No hay datos en el archivo");
             return;
         } else {
             if (gameServiceImpl.findAll().size() == 0) {

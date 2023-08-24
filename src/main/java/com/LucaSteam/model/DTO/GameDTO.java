@@ -1,28 +1,27 @@
 package com.LucaSteam.model.DTO;
 
+import javax.validation.constraints.*;
+import java.util.Date;
 
 public class GameDTO {
 
     long id;
+    @NotEmpty(message = "El nombre no debe ser vacío")
     private String name;
+    @Max(value = 2023)
+    @Positive
     private int year;
+    @Positive
     private long sales;
+    @NotEmpty(message = "El nombre de la plateforma no debe ser vacío")
     private String platform;
+    @NotEmpty(message = "El nombre del género no debe ser vacío")
     private String genre;
+    @NotEmpty(message = "El nombre del publisher no debe ser vacío")
     private String publisher;
 
     public GameDTO() {
         super();
-    }
-
-    public GameDTO(String name, int year, long sales, String platform, String genre, String publisher) {
-        super();
-        this.name = name;
-        this.year = year;
-        this.sales = sales;
-        this.platform = platform;
-        this.genre = genre;
-        this.publisher = publisher;
     }
 
     public String getName() {
@@ -71,5 +70,18 @@ public class GameDTO {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    @Override
+    public String toString() {
+        return "GameDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", year=" + year +
+                ", sales=" + sales +
+                ", platform='" + platform + '\'' +
+                ", genre='" + genre + '\'' +
+                ", publisher='" + publisher + '\'' +
+                '}';
     }
 }

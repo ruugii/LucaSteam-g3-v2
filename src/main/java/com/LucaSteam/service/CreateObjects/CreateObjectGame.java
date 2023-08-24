@@ -26,22 +26,15 @@ public class CreateObjectGame {
     }
 
     public static Game createGame(String name, String platform, int year, String genre, String publisher, String sales) {
+        System.out.println("save (POST)");
         Game g = new Game();
         String floatStr = sales;
         float floatVal = Float.parseFloat(floatStr);
         long longVal = (long) (floatVal * 100.0);
-        System.out.println("longVal: " + longVal);
-        long sales_long = Long.parseLong(longVal + "");
         g.setName(name);
-        System.out.println("platform: " + platform);
-        System.out.println("genre: " + genre);
-        System.out.println("publisher: " + publisher);
         Platform p = platformServiceImpl.findByName(platform);
-        System.out.println("p: " + p);
         Genre gen = genreServiceImpl.findByName(genre);
-        System.out.println("gen: " + gen);
         Publisher pub = publisherServiceImpl.findByName(publisher);
-        System.out.println("pub: " + pub);
         if (p == null) {
             p = new Platform();
             p.setName(platform);
@@ -62,7 +55,8 @@ public class CreateObjectGame {
         g.setYear(year);
         g.setGenreId(gen);
         g.setPublisherId(pub);
-        g.setSales(sales_long);
+        g.setSales(longVal);
+        System.out.println(name);
         return g;
     }
 }

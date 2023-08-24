@@ -6,13 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.LucaSteam.model.Game;
 import com.LucaSteam.model.Genre;
@@ -105,6 +99,20 @@ public class GameController {
 			@PathVariable String publisher_name) {
 		logger.info("------ readPublisher(GET) ");
 		return publisherServ.findByName(publisher_name);
+	}
+
+	@PutMapping
+	public Game update(@Valid @RequestBody GameDTO gameDTO) {
+		Game g = CreateObjectGame.createGame(gameDTO.getName(), gameDTO.getPlatform(), gameDTO.getYear(), gameDTO.getGenre(), gameDTO.getPublisher(), String.valueOf(gameDTO.getSales()));
+		logger.info("------ update (PUT) " + g);
+		g.setId(gameDTO.getId());
+		return gameServ.update(g);
+	}
+
+	@GetMapping("FindById/{id}")
+	public Game findById(@PathVariable long id) {
+		logger.info("------ read (GET) ");
+		return gameServ.findById(id);
 	}
 
 }

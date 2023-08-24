@@ -3,7 +3,9 @@ package com.LucaSteam.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.LucaSteam.model.DTO.GameDTO;
 import com.LucaSteam.model.Publisher;
+import com.LucaSteam.service.CreateObjects.CreateObjectGame;
 import com.LucaSteam.service.GenreService;
 import com.LucaSteam.service.PlatformService;
 import com.LucaSteam.service.PublisherService;
@@ -40,7 +42,8 @@ public class GameController {
 	private PublisherService publisherServ;
 
 	@PostMapping
-	public Game save(@RequestBody Game game) {
+	public Game save(@RequestBody GameDTO gameDTO) {
+		Game game = CreateObjectGame.createGame(gameDTO.getName(), gameDTO.getPlatform(), gameDTO.getYear(), gameDTO.getGenre(), gameDTO.getPublisher(), String.valueOf(gameDTO.getSales()));
 		logger.info("------ save (POST)");
 		this.gameServ.save(game);
 		Game result = gameServ.findByName(game.getName());

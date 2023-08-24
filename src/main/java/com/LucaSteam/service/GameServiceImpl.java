@@ -54,11 +54,23 @@ public class GameServiceImpl implements GameService{
         return gameDAO.findByName(name);
     }
 
+    
+    /**
+     * Searches for a game by its ID in the database.
+     *
+     * @param id The ID of the game to search for.
+     * @return The found game or null if not found.
+     */
     @Override
     public Game findById(long id) {
         return gameDAO.findById(id);
     }
 
+    /**
+     * Deletes a game by its ID from the database.
+     *
+     * @param id The ID of the game to delete.
+     */
 	@Override
 	public void deleteById(long id) {
 		gameDAO.deleteById(id);

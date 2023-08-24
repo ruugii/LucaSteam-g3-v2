@@ -16,5 +16,12 @@ public interface GameDAO extends JpaRepository<Game, Long> {
      * @return The game with the given name or null if not found.
      */
     Game findByName(String name);
+    
+    /**
+     * Retrieves a game from the database by its ID.
+     *
+     * @param id The ID of the game to retrieve.
+     * @return The game with the given ID or null if not found.
+     */
     Game findById(long id);
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LucaSteam.model.Game;
@@ -119,6 +119,12 @@ public class GameController {
 		return publisherServ.findByName(publisher_name);
 	}
 
+	   /**
+     * Updates an existing game in the database.
+     *
+     * @param gameDTO The data transfer object containing updated game information.
+     * @return The updated game entity.
+     */
 	@PutMapping
 	public Game update(@Valid @RequestBody GameDTO gameDTO) {
 		Game g = CreateObjectGame.createGame(gameDTO.getName(), gameDTO.getPlatform(), gameDTO.getYear(), gameDTO.getGenre(), gameDTO.getPublisher(), String.valueOf(gameDTO.getSales()));

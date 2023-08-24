@@ -1,5 +1,7 @@
 package com.LucaSteam.service;
 
+import com.LucaSteam.model.Platform;
+
 public interface PlatformService {
     public void save(Platform p);
 

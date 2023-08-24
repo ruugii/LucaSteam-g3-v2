@@ -58,7 +58,7 @@ class ControllerApplicationTests {
 	    int lines2 = gc.findAll().size();
 	    assertTrue(lines1 == (lines2 -1));
 	}
-	
+
 	@Test
 	void isGameDeleted() {
 		int lines1 = gc.findAll().size();

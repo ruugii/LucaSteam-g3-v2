@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GameDAO extends JpaRepository<Game, Long> {
     Game findByName(String name);
+    Game findById(long id);
 }

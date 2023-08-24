@@ -17,6 +17,12 @@ public class GameServiceImpl implements GameService{
     public void save(Game g) {
         gameDAO.save(g);
     }
+
+    @Override
+    public Game update(Game g) {
+        return gameDAO.save(g);
+    }
+
     @Override
     public List<Game> findAll() {
         return gameDAO.findAll();
@@ -25,5 +31,10 @@ public class GameServiceImpl implements GameService{
     @Override
     public Game findByName(String name) {
         return gameDAO.findByName(name);
+    }
+
+    @Override
+    public Game findById(long id) {
+        return gameDAO.findById(id);
     }
 }

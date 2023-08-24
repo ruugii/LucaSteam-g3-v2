@@ -58,4 +58,20 @@ class ControllerApplicationTests {
 	    int lines2 = gc.findAll().size();
 	    assertTrue(lines1 == (lines2 -1));
 	}
+	
+	@Test
+	void isGameDeleted() {
+		int lines1 = gc.findAll().size();
+		GameDTO gdto = new GameDTO();
+		gdto.setName("Game5" + lines1);
+		gdto.setYear(2023);
+		gdto.setSales(5);
+		gdto.setGenre("Genre5" + lines1);
+		gdto.setPlatform("Platform5"+ lines1);
+		gdto.setPublisher("Publisher5"+ lines1);
+		gc.save(gdto);
+		int toBeDeleted = gc.findAll().size();
+		gc.deleteById(toBeDeleted);
+		assertTrue(gc.findById(toBeDeleted) == null);
+	}
 }

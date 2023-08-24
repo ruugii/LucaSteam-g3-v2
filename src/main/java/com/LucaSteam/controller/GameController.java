@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +64,16 @@ public class GameController {
 		logger.info("------ Dato Salvado " + result);
 		return result;
 	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteById(@PathVariable int id) {
+		gameServ.deleteById(id);
+	}
 
+	@GetMapping("/{id}")
+	public void findById(@PathVariable int id) {
+		gameServ.deleteById(id);
+	}
 	
 	// http://127.0.0.1:3000/v3/api-docs
 	@Operation(summary = "Search Games by ID", description = "Gived an ID, returns and object Game", tags= {"game"})

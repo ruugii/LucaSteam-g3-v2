@@ -16,7 +16,7 @@ CREATE TABLE platform (
 
 CREATE TABLE game (
     id_game BIGINT PRIMARY KEY AUTO_INCREMENT,
-    platform_name VARCHAR(255) NOT NULL,
+    game_name VARCHAR(255) NOT NULL,
     year int,
     sales BIGINT,
     id_platform BIGINT,

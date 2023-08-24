@@ -10,4 +10,5 @@ public interface GameService {
     List<Game> findAll();
     Game findByName(String name);
     Game findById(long id);
+	void deleteById(long id);
 }

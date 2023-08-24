@@ -37,4 +37,10 @@ public class GameServiceImpl implements GameService{
     public Game findById(long id) {
         return gameDAO.findById(id);
     }
+
+	@Override
+	public void deleteById(long id) {
+		gameDAO.deleteById(id);
+	}
+
 }

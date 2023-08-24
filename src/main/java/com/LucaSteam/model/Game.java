@@ -92,4 +92,17 @@ public class Game {
     public void setPublisherId(Publisher publisherId) {
         this.publisherId = publisherId;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", year=" + year +
+                ", sales=" + sales +
+                ", platformId=" + platformId +
+                ", genreId=" + genreId +
+                ", publisherId=" + publisherId +
+                '}';
+    }
 }

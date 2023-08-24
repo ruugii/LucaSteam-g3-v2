@@ -70,7 +70,8 @@ class ControllerApplicationTests {
 		gdto.setPlatform("Platform5"+ lines1);
 		gdto.setPublisher("Publisher5"+ lines1);
 		gc.save(gdto);
-		int toBeDeleted = gc.findAll().size();
+		System.out.println("TO BE DELETED: " + gc.findById(gc.findAll().get(gc.findAll().size()-1).getId()));
+		long toBeDeleted = gc.findAll().get(gc.findAll().size()-1).getId();
 		gc.deleteById(toBeDeleted);
 		assertTrue(gc.findById(toBeDeleted) == null);
 	}

@@ -17,14 +17,14 @@ public class Publisher {
 	private long id_publisher;
 
 	@Column(name = "publisher_name")
-	private String publisher_name;
+	private String name;
 	
 	public Publisher() {
 	}
 	
 	public Publisher(long id_publisher, String publisher_name) {
 		this.id_publisher = id_publisher;
-		this.publisher_name = publisher_name;
+		this.name = publisher_name;
 	}
 
 	public long getId_publisher() {
@@ -35,9 +35,10 @@ public class Publisher {
 	}
 
 	public String getName() {
-		return publisher_name;
+		return name;
 	}
-	public void setPublisher_name(String publisher_name) {
-		this.publisher_name = publisher_name;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

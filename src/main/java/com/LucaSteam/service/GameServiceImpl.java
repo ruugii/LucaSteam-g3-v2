@@ -1,12 +1,16 @@
 package com.LucaSteam.service;
 
+import com.LucaSteam.model.DTO.GameDTO;
 import com.LucaSteam.model.Game;
+import com.LucaSteam.model.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LucaSteam.repository.GameDAO;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameServiceImpl implements GameService{
@@ -40,8 +44,21 @@ public class GameServiceImpl implements GameService{
      * @return A list of all games.
      */
     @Override
-    public List<Game> findAll() {
-        return gameDAO.findAll();
+    public List<GameDTO> findAll() {
+        List<Game> games = gameDAO.findAll();
+        List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
+        for (Game game : games) {
+            GameDTO aux = new GameDTO();
+            aux.setId(game.getId());
+            aux.setName(game.getName());
+            aux.setYear(game.getYear());
+            aux.setSales(game.getSales());
+            aux.setPlatform(game.getPlatformId().getName());
+            aux.setGenre(game.getGenreId().getName());
+            aux.setPublisher(game.getPublisherId().getName());
+            gamesDTO.add(aux);
+        }
+        return gamesDTO;
     }
 
     
@@ -64,7 +81,7 @@ public class GameServiceImpl implements GameService{
      * @return The found game or null if not found.
      */
     @Override
-    public Game findById(long id) {
+    public Optional<Game> findById(long id) {
         return gameDAO.findById(id);
     }
 
@@ -77,5 +94,24 @@ public class GameServiceImpl implements GameService{
 	public void deleteById(long id) {
 		gameDAO.deleteById(id);
 	}
+
+    @Override
+    public List<GameDTO> findAllByGenre(Genre genre) {
+        List<Game> games = gameDAO.findAllBygenreId(genre);
+        List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
+        for (Game game : games) {
+            GameDTO aux = new GameDTO();
+            aux.setId(game.getId());
+            aux.setName(game.getName());
+            aux.setYear(game.getYear());
+            aux.setSales(game.getSales());
+            aux.setPlatform(game.getPlatformId().getName());
+            aux.setGenre(game.getGenreId().getName());
+            aux.setPublisher(game.getPublisherId().getName());
+            gamesDTO.add(aux);
+        }
+        return gamesDTO;
+    }
+
 
 }

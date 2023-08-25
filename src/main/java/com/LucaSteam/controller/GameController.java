@@ -1,7 +1,10 @@
 package com.LucaSteam.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.LucaSteam.controller.error.GameNotFoundException;
+import com.LucaSteam.repository.GameDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +89,8 @@ public class GameController {
 			@ApiResponse(responseCode = "404", description = "Game not found (NOT implemented)", content = @Content) })
 	@GetMapping
 	//@RequestMapping(method = RequestMethod.GET)
-	public List<Game> findAll() {
-		//@Parameter(description = "ID del estudiante a localizar", required=true) 
+	public List<GameDTO> findAll() {
+		//@Parameter(description = "ID del estudiante a localizar", required=true)
 		return gameServ.findAll();
 	}
 
@@ -95,7 +98,7 @@ public class GameController {
 	//falta preparar las excepciones para postman
 
 	//TODO: IMPLEMENTAR EL METODO DE BUSQUEDA POR NOMBRE DE PLATAFORMA
-	@GetMapping("/{platform_name}")
+	@GetMapping("/findByPlatform/{platform_name}")
 	public Platform findByNamePlatform(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String platform_name) {
@@ -103,15 +106,18 @@ public class GameController {
 		return platformServ.findByName(platform_name);
 	}
 
-	@GetMapping("/{genre_name}")
-	public Genre findByNameGenre(
+	@GetMapping("/findByGenre/{genre_name}")
+	public List<GameDTO> findByNameGenre(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String genre_name) {
 		logger.info("------ readGenre(GET) ");
-		return genreServ.findByName(genre_name);
+		Genre g = genreServ.findByName(genre_name);
+		System.out.println(g);
+		return gameServ.findAllByGenre(g);
 	}
 
-	@GetMapping("/{publisher_name}")
+
+	@GetMapping("/findByPublisher/{publisher_name}")
 	public Publisher findByNamePublisher(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String publisher_name) {
@@ -136,7 +142,7 @@ public class GameController {
 	@GetMapping("FindById/{id}")
 	public Game findById(@PathVariable long id) {
 		logger.info("------ read (GET) ");
-		return gameServ.findById(id);
+		return gameServ.findById(id).orElseThrow(GameNotFoundException::new);
 	}
 
 }

@@ -1,12 +1,14 @@
 package com.LucaSteam.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LucaSteam.model.Game;
 import com.LucaSteam.model.Genre;
 import com.LucaSteam.model.Platform;
-import com.LucaSteam.model.Genre;
+
 import com.LucaSteam.repository.GenreDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,4 +39,5 @@ public class GenreServiceImpl implements GenreService {
     public Genre findByName(String name) {
         return genreDAO.findByName(name);
     }
+
 }

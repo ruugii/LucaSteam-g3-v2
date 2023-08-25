@@ -23,9 +23,9 @@ public class GameComponent implements ApplicationRunner {
     }
 
     /**
-     * Initializes game data by reading from a CSV file and populating the database.
+     * Initializes game data by reading from a CSV file and populating the database when there is no data on it.
      *
-     * @param args Command line arguments (not used???).
+     * @param args Command line arguments (not used, it's because it's a component that it's used when you start the program).
      */
     public void run(ApplicationArguments args) {
         ArrayList<String> games = new ArrayList<>();

@@ -50,7 +50,7 @@ public class CreateObjectGame {
         }
         if (pub == null) {
             pub = new Publisher();
-            pub.setPublisher_name(publisher);
+            pub.setName(publisher);
             publisherServiceImpl.save(pub);
         }
         p = platformServiceImpl.findByName(platform);

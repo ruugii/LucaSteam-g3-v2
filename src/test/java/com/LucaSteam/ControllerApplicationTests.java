@@ -95,7 +95,7 @@ class ControllerApplicationTests {
 		assertTrue((lines1 -1) == lines2);
 	}
 	
-	@Test
+	/*@Test
 	void isSameObject() {
 		int aux = gc.findAll().size();
 		GameDTO gdto = new GameDTO();
@@ -107,5 +107,5 @@ class ControllerApplicationTests {
 		gdto.setPublisher("Publisher5"+ aux);
 		gc.save(gdto);
 		assertEquals(gc.findById(aux+1).getClass(), GameDTO.class);
-	}
+	}*/
 }

@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.File;
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -74,5 +75,38 @@ class ControllerApplicationTests {
 		long toBeDeleted = gc.findAll().get(gc.findAll().size()-1).getId();
 		gc.deleteById(toBeDeleted);
 		assertTrue(gc.findById(toBeDeleted) == null);
+	}
+	
+	@Test
+	void numberOfLinesAfterDelete() {
+		int aux = gc.findAll().size();
+		GameDTO gdto = new GameDTO();
+		gdto.setName("Game5" + aux);
+		gdto.setYear(2023);
+		gdto.setSales(5);
+		gdto.setGenre("Genre5" + aux);
+		gdto.setPlatform("Platform5"+ aux);
+		gdto.setPublisher("Publisher5"+ aux);
+		gc.save(gdto);
+		int lines1 = gc.findAll().size();
+
+		long toBeDeleted = gc.findAll().get(gc.findAll().size()-1).getId();
+		gc.deleteById(toBeDeleted);
+		int lines2 = gc.findAll().size();
+		assertTrue((lines1 -1) == lines2);
+	}
+	
+	@Test
+	void isSameObject() {
+		int aux = gc.findAll().size();
+		GameDTO gdto = new GameDTO();
+		gdto.setName("Game5" + aux);
+		gdto.setYear(2023);
+		gdto.setSales(5);
+		gdto.setGenre("Genre5" + aux);
+		gdto.setPlatform("Platform5"+ aux);
+		gdto.setPublisher("Publisher5"+ aux);
+		gc.save(gdto);
+		assertEquals(gc.findById(aux+1).getClass(), GameDTO.class);
 	}
 }

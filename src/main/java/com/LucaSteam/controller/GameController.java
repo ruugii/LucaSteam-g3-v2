@@ -103,7 +103,7 @@ public class GameController {
 		return platformServ.findByName(platform_name);
 	}
 
-	@GetMapping("/{genre_name}")
+	@GetMapping("/findByGenre/{genre_name}")
 	public Genre findByNameGenre(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String genre_name) {

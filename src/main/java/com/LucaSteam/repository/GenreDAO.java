@@ -19,4 +19,6 @@ public interface GenreDAO extends JpaRepository<Genre, Long> {
      */
     @Query("FROM Genre WHERE genre_name =?1")
     Genre findByName(String name);
+    
+    
 }

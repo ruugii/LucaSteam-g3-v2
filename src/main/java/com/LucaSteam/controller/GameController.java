@@ -1,7 +1,9 @@
 package com.LucaSteam.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.LucaSteam.repository.GameDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +88,8 @@ public class GameController {
 			@ApiResponse(responseCode = "404", description = "Game not found (NOT implemented)", content = @Content) })
 	@GetMapping
 	//@RequestMapping(method = RequestMethod.GET)
-	public List<Game> findAll() {
-		//@Parameter(description = "ID del estudiante a localizar", required=true) 
+	public List<GameDTO> findAll() {
+		//@Parameter(description = "ID del estudiante a localizar", required=true)
 		return gameServ.findAll();
 	}
 

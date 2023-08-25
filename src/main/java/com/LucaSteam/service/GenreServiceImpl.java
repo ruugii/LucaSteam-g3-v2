@@ -16,11 +16,23 @@ public class GenreServiceImpl implements GenreService {
     @Autowired
     private GenreDAO genreDAO;
 
+    /**
+     * Saves a Genre in the database.
+     *
+     * @param g The Genre to be saved.
+     */
     @Override
     public void save(Genre g) {
         genreDAO.save(g);
     }
 
+    
+    /**
+     * Searches for a genre by its name in the database.
+     *
+     * @param name The name of the Genre to search for.
+     * @return The found Genre or null if not found.
+     */
     @Override
     public Genre findByName(String name) {
         return genreDAO.findByName(name);

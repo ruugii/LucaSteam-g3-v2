@@ -10,6 +10,9 @@ import com.LucaSteam.service.GameServiceImpl;
 
 import java.util.ArrayList;
 
+/**
+ * Component that performs data initialization on application startup.
+ */
 @Component
 public class GameComponent implements ApplicationRunner {
     private GameServiceImpl gameServiceImpl;
@@ -19,6 +22,11 @@ public class GameComponent implements ApplicationRunner {
         this.gameServiceImpl = gameServiceImpl;
     }
 
+    /**
+     * Initializes game data by reading from a CSV file and populating the database.
+     *
+     * @param args Command line arguments (not used???).
+     */
     public void run(ApplicationArguments args) {
         ArrayList<String> games = new ArrayList<>();
         games = DocumentRead.InicialData("src/main/java/com/LucaSteam/resources/files/data.csv");

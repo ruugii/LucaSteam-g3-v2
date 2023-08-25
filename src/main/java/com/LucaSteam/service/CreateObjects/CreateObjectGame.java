@@ -10,6 +10,9 @@ import com.LucaSteam.service.PublisherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Utility class for creating Game objects with associated entities like Platform, Genre, and Publisher.
+ */
 @Component
 public class CreateObjectGame {
     Game g = null;

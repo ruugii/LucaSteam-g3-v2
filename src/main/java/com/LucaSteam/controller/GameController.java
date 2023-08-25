@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LucaSteam.model.Game;
@@ -56,6 +56,11 @@ public class GameController {
 	@Autowired
 	private PublisherService publisherServ;
 
+	/**
+	 * Given an object gameDTO
+	 * Created a Game whit @param gameDTO
+	 * Created a result whit (DDBB -> Game) @param called by the name 
+	 * @return that game if exist	 * */
 	@PostMapping
 	public Game save(@Valid @RequestBody GameDTO gameDTO) {
 		System.out.println("------ save (POST) " + gameDTO);
@@ -74,6 +79,7 @@ public class GameController {
 	}
 	
 	// http://127.0.0.1:3000/v3/api-docs
+	// http://127.0.0.1:3000/swagger-ui/index.html#/
 	@Operation(summary = "Search Games by ID", description = "Gived an ID, returns and object Game", tags= {"game"})
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Game located", content = {
@@ -128,6 +134,12 @@ public class GameController {
 		return publisherServ.findByName(publisher_name);
 	}
 
+	   /**
+     * Updates an existing game in the database.
+     *
+     * @param gameDTO The data transfer object containing updated game information.
+     * @return The updated game entity.
+     */
 	@PutMapping
 	public Game update(@Valid @RequestBody GameDTO gameDTO) {
 		Game g = CreateObjectGame.createGame(gameDTO.getName(), gameDTO.getPlatform(), gameDTO.getYear(), gameDTO.getGenre(), gameDTO.getPublisher(), String.valueOf(gameDTO.getSales()));

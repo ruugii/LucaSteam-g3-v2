@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DocumentRead {
+	
+	 /**
+     * Reads data from a text file located at the specified path.
+     *
+     * @param path Path to the text file.
+     * @return An ArrayList containing each line of the text file.
+     */
     public static ArrayList<String> InicialData (String path) {
         Path path1 = Paths.get(path);
         if (!Files.exists(path1)) {
@@ -31,6 +38,12 @@ public class DocumentRead {
         }
     }
 
+    /**
+     * Saves data to a text file located at the specified path.
+     *
+     * @param path    Path to the text file.
+     * @param toWrite ArrayList containing data to be written to the text file.
+     */
     public static void SaveData(String path, ArrayList<String> toWrite) {
         Path path1 = Paths.get(path);
         try {
@@ -47,6 +60,13 @@ public class DocumentRead {
         }
     }
 
+    /**
+     * Saves data to a text file located at the specified path, while ensuring that each line
+     * contains a comma. If a line does not contain a comma, an empty line is written.
+     *
+     * @param path    Path to the text file.
+     * @param toWrite ArrayList containing data to be written to the text file.
+     */
     public static void SaveDataTest(String path, ArrayList<String> toWrite) {
         Path path1 = Paths.get(path);
         try {

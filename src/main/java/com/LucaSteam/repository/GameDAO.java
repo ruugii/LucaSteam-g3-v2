@@ -28,6 +28,7 @@ public interface GameDAO extends JpaRepository<Game, Long> {
      * @return The game with the given ID or null if not found.
      */
     Game findById(long id);
-    
+
+    @Query("FROM Game WHERE genre_id =?1")
     List<Game> findAllByGenreName(long id);
 }

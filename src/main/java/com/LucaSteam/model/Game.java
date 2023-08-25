@@ -1,6 +1,7 @@
 package com.LucaSteam.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "game")
@@ -104,5 +105,18 @@ public class Game {
                 ", genreId=" + genreId +
                 ", publisherId=" + publisherId +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return id == game.id && year == game.year && sales == game.sales && Objects.equals(name, game.name) && Objects.equals(platformId.getId(), game.platformId.getId()) && Objects.equals(genreId.getId(), game.genreId.getId()) && Objects.equals(publisherId.getId_publisher(), game.publisherId.getId_publisher());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, year, sales, platformId, genreId, publisherId);
     }
 }

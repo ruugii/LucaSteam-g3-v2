@@ -97,7 +97,7 @@ public class GameController {
 	//falta preparar las excepciones para postman
 
 	//TODO: IMPLEMENTAR EL METODO DE BUSQUEDA POR NOMBRE DE PLATAFORMA
-	@GetMapping("/{platform_name}")
+	@GetMapping("/findByPlatform/{platform_name}")
 	public Platform findByNamePlatform(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String platform_name) {
@@ -106,14 +106,16 @@ public class GameController {
 	}
 
 	@GetMapping("/findByGenre/{genre_name}")
-	public Genre findByNameGenre(
+	public List<GameDTO> findByNameGenre(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String genre_name) {
 		logger.info("------ readGenre(GET) ");
-		return genreServ.findByName(genre_name);
+		long id = genreServ.findByName(genre_name).getId();
+		return gameServ.findByGenreId(id);
 	}
 
-	@GetMapping("/{publisher_name}")
+
+	@GetMapping("/findByPublisher/{publisher_name}")
 	public Publisher findByNamePublisher(
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String publisher_name) {

@@ -91,4 +91,22 @@ public class GameServiceImpl implements GameService{
 		gameDAO.deleteById(id);
 	}
 
+	@Override
+	public List<GameDTO> findByGenreId(long id) {
+		List<Game> games = gameDAO.findAllByGenreName(id);
+        List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
+        for (Game game : games) {
+            GameDTO aux = new GameDTO();
+            aux.setId(game.getId());
+            aux.setName(game.getName());
+            aux.setYear(game.getYear());
+            aux.setSales(game.getSales());
+            aux.setPlatform(game.getPlatformId().getName());
+            aux.setGenre(game.getGenreId().getName());
+            aux.setPublisher(game.getPublisherId().getName());
+            gamesDTO.add(aux);
+        }
+        return gamesDTO;
+	}
+
 }

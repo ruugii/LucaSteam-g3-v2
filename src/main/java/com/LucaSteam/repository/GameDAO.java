@@ -4,6 +4,7 @@ import com.LucaSteam.model.Game;
 
 import java.util.List;
 
+import com.LucaSteam.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,5 @@ public interface GameDAO extends JpaRepository<Game, Long> {
      */
     Game findById(long id);
 
-    @Query("FROM Game WHERE genre_id =?1")
-    List<Game> findAllByGenreName(long id);
+    List<Game> findAllBygenreId(Genre genre);
 }

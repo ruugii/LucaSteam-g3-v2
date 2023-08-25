@@ -2,6 +2,7 @@ package com.LucaSteam.service;
 
 import com.LucaSteam.model.DTO.GameDTO;
 import com.LucaSteam.model.Game;
+import com.LucaSteam.model.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,10 +92,9 @@ public class GameServiceImpl implements GameService{
 		gameDAO.deleteById(id);
 	}
 
-	@Override
-	public List<GameDTO> findByGenreId(long id) {
-		List<Game> games = gameDAO.findAllByGenreName(id);
-		System.out.println(games.get(0));
+    @Override
+    public List<GameDTO> findAllByGenre(Genre genre) {
+        List<Game> games = gameDAO.findAllBygenreId(genre);
         List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
         for (Game game : games) {
             GameDTO aux = new GameDTO();
@@ -107,8 +107,8 @@ public class GameServiceImpl implements GameService{
             aux.setPublisher(game.getPublisherId().getName());
             gamesDTO.add(aux);
         }
-        System.out.println(gamesDTO.get(0));
         return gamesDTO;
-	}
+    }
+
 
 }

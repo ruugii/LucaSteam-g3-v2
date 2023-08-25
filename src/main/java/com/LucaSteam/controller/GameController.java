@@ -110,9 +110,9 @@ public class GameController {
 			//@Parameter(description = "nombre de Platform a localizar", required=true) 
 			@PathVariable String genre_name) {
 		logger.info("------ readGenre(GET) ");
-		long id = genreServ.findByName(genre_name).getId();
-		System.out.println(id);
-		return gameServ.findByGenreId(id);
+		Genre g = genreServ.findByName(genre_name);
+		System.out.println(g);
+		return gameServ.findAllByGenre(g);
 	}
 
 

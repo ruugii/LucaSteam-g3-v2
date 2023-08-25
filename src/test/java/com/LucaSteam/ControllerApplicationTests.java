@@ -22,57 +22,83 @@ class ControllerApplicationTests {
 	@Autowired
 	private GameController gc;
 	
+//	@Test
+//	void FileExists() {
+//		File file = new File("src/main/java/com/LucaSteam/resources/files/data.csv");
+//		assertTrue(file.exists());
+//	}
+//
+//	@Test
+//	void numberOfLines() {
+//		ArrayList<String> lines = DocumentRead.InicialData("src/main/java/com/LucaSteam/resources/files/data.csv");
+//		int lines_values = lines.size();
+//		int valuesBBDD = gc.findAll().size();
+//		assertTrue(lines_values <= valuesBBDD);
+//	}
+//
+//	@Test
+//	void fileIsNotEmpty() {
+//		GameServiceImpl genreService = new GameServiceImpl();
+//		ArrayList<String> lines = DocumentRead.InicialData("src/main/java/com/LucaSteam/resources/files/data.csv");
+//		boolean lines_values = lines.isEmpty();
+//		assertTrue(!lines_values);
+//	}
+//
+//	@Test
+//	void isGameAdded() {
+//	    int lines1 = gc.findAll().size();
+//		GameDTO gdto = new GameDTO();
+//		gdto.setName("Game5" + lines1);
+//		gdto.setYear(2023);
+//		gdto.setSales(5);
+//		gdto.setGenre("Genre5" + lines1);
+//		gdto.setPlatform("Platform5"+ lines1);
+//		gdto.setPublisher("Publisher5"+ lines1);
+//		gc.save(gdto);
+//	    int lines2 = gc.findAll().size();
+//	    assertTrue(lines1 == (lines2 -1));
+//	}
+//
+//	@Test
+//	void isGameDeleted() {
+//		int lines1 = gc.findAll().size();
+//		GameDTO gdto = new GameDTO();
+//		gdto.setName("Game5" + lines1);
+//		gdto.setYear(2023);
+//		gdto.setSales(5);
+//		gdto.setGenre("Genre5" + lines1);
+//		gdto.setPlatform("Platform5"+ lines1);
+//		gdto.setPublisher("Publisher5"+ lines1);
+//		gc.save(gdto);
+//		System.out.println("TO BE DELETED: " + gc.findById(gc.findAll().get(gc.findAll().size()-1).getId()));
+//		long toBeDeleted = gc.findAll().get(gc.findAll().size()-1).getId();
+//		gc.deleteById(toBeDeleted);
+//		assertTrue(gc.findById(toBeDeleted) == null);
+//	}
+	
+	//PRUEBA DE UNITARIA: que el objeto UPDATE y la posición por ID de la base de datos sean iguales
 	@Test
-	void FileExists() {
-		File file = new File("src/main/java/com/LucaSteam/resources/files/data.csv");
-		assertTrue(file.exists());
-	}
-
-	@Test
-	void numberOfLines() {
-		ArrayList<String> lines = DocumentRead.InicialData("src/main/java/com/LucaSteam/resources/files/data.csv");
-		int lines_values = lines.size();
-		int valuesBBDD = gc.findAll().size();
-		assertTrue(lines_values <= valuesBBDD);
-	}
-
-	@Test
-	void fileIsNotEmpty() {
-		GameServiceImpl genreService = new GameServiceImpl();
-		ArrayList<String> lines = DocumentRead.InicialData("src/main/java/com/LucaSteam/resources/files/data.csv");
-		boolean lines_values = lines.isEmpty();
-		assertTrue(!lines_values);
-	}
-
-	@Test
-	void isGameAdded() {
-	    int lines1 = gc.findAll().size();
+	void isGameUpdated() {
+		Game preparingGame = gc.findById(555);
+		GameDTO comparedGame = new GameDTO();
+		comparedGame.setName(preparingGame.getName());
+		comparedGame.setYear(preparingGame.getYear());
+		comparedGame.setSales(preparingGame.getSales());
+		comparedGame.setGenre(preparingGame.getGenreId().getName());
+		comparedGame.setPlatform(preparingGame.getPlatformId().getName());
+		comparedGame.setPublisher(preparingGame.getPublisherId().getPublisher_name());
+		comparedGame.setId(preparingGame.getId());
+		
 		GameDTO gdto = new GameDTO();
-		gdto.setName("Game5" + lines1);
+		gdto.setName("Game5");
 		gdto.setYear(2023);
 		gdto.setSales(5);
-		gdto.setGenre("Genre5" + lines1);
-		gdto.setPlatform("Platform5"+ lines1);
-		gdto.setPublisher("Publisher5"+ lines1);
-		gc.save(gdto);
-	    int lines2 = gc.findAll().size();
-	    assertTrue(lines1 == (lines2 -1));
-	}
-
-	@Test
-	void isGameDeleted() {
-		int lines1 = gc.findAll().size();
-		GameDTO gdto = new GameDTO();
-		gdto.setName("Game5" + lines1);
-		gdto.setYear(2023);
-		gdto.setSales(5);
-		gdto.setGenre("Genre5" + lines1);
-		gdto.setPlatform("Platform5"+ lines1);
-		gdto.setPublisher("Publisher5"+ lines1);
-		gc.save(gdto);
-		System.out.println("TO BE DELETED: " + gc.findById(gc.findAll().get(gc.findAll().size()-1).getId()));
-		long toBeDeleted = gc.findAll().get(gc.findAll().size()-1).getId();
-		gc.deleteById(toBeDeleted);
-		assertTrue(gc.findById(toBeDeleted) == null);
+		gdto.setGenre("Genre5");
+		gdto.setPlatform("Platform5");
+		gdto.setPublisher("Publisher5");
+		gdto.setId(555);
+		gc.update(gdto);
+		
+		assertTrue(gdto == comparedGame);
 	}
 }

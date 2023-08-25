@@ -34,7 +34,7 @@ public class Publisher {
 		this.id_publisher = id_publisher;
 	}
 
-	public String getPublisher_name() {
+	public String getName() {
 		return publisher_name;
 	}
 	public void setPublisher_name(String publisher_name) {

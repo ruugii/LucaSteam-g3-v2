@@ -1,7 +1,6 @@
-package com.LucaSteam;
-
-
 import com.LucaSteam.controller.GameController;
+
+ 
 
 import com.LucaSteam.model.DTO.GameDTO;
 import com.LucaSteam.model.Game;
@@ -11,9 +10,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+ 
+
 import java.io.File;
 import java.util.ArrayList;
 
+ 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -77,28 +81,64 @@ class ControllerApplicationTests {
 //	}
 	
 	//PRUEBA DE UNITARIA: que el objeto UPDATE y la posición por ID de la base de datos sean iguales
-	@Test
-	void isGameUpdated() {
-		Game preparingGame = gc.findById(555);
-		GameDTO comparedGame = new GameDTO();
-		comparedGame.setName(preparingGame.getName());
-		comparedGame.setYear(preparingGame.getYear());
-		comparedGame.setSales(preparingGame.getSales());
-		comparedGame.setGenre(preparingGame.getGenreId().getName());
-		comparedGame.setPlatform(preparingGame.getPlatformId().getName());
-		comparedGame.setPublisher(preparingGame.getPublisherId().getPublisher_name());
-		comparedGame.setId(preparingGame.getId());
+	@Test //jc- SEGURAMENTE BORRAR
+	void isGameUpdatedIsDifferentThanBeforeOne() {
 		
-		GameDTO gdto = new GameDTO();
-		gdto.setName("Game5");
-		gdto.setYear(2023);
-		gdto.setSales(5);
-		gdto.setGenre("Genre5");
-		gdto.setPlatform("Platform5");
-		gdto.setPublisher("Publisher5");
-		gdto.setId(555);
-		gc.update(gdto);
+		long idLast = gc.findAll().get(gc.findAll().size()-1).getId(); //nombre para la ultima posicion
 		
-		assertTrue(gdto == comparedGame);
+		
+		long idNew = gc.findAll().get(gc.findAll().size()+1).getId(); //nombre para la NUEVA POSICION
+		
+		
+		Game loadLastPosition = gc.findAll().get(gc.findAll().size()); //ultima posicion metida en una variable
+		GameDTO convertedLoadLastPosition = new GameDTO();
+		convertedLoadLastPosition.setName(loadLastPosition.getName());
+		convertedLoadLastPosition.setYear(loadLastPosition.getYear());
+		convertedLoadLastPosition.setSales(loadLastPosition.getSales());
+		convertedLoadLastPosition.setGenre(loadLastPosition.getGenreId().getName());
+		convertedLoadLastPosition.setPlatform(loadLastPosition.getPlatformId().getName());
+		convertedLoadLastPosition.setPublisher(loadLastPosition.getPublisherId().getName());
+		convertedLoadLastPosition.setId(loadLastPosition.getId()+1); //nueva id a nueva posicion
+		
+		gc.save(convertedLoadLastPosition);
+		//nueva posicion guardada con datos reales.
+		
+//		 Game comparedGame = gc.findById(idNew);
+		
+		//juego con el que vamos a updatear 
+		GameDTO NewGame = new GameDTO();
+		 NewGame.setName("Game5");
+		 NewGame.setYear(2023);
+		 NewGame.setSales(5);
+		 NewGame.setGenre("Genre5");
+		 NewGame.setPlatform("Platform5");
+		 NewGame.setPublisher("Publisher5");
+		 NewGame.setId(idNew);
+		
+		System.out.println("\n OBJETO ANTES DE SER MODIFICADO = "+convertedLoadLastPosition.toString()+"\n");
+		
+		
+		gc.update(NewGame);
+		
+		//guardo cambios del update hecho en otra veriable
+		Game loadUpdated = gc.findAll().get(gc.findAll().size()); //ultima posicion metida en una variable
+		GameDTO loadUpdatedGame = new GameDTO();
+		loadUpdatedGame.setName(loadLastPosition.getName());
+		loadUpdatedGame.setYear(loadLastPosition.getYear());
+		loadUpdatedGame.setSales(loadLastPosition.getSales());
+		loadUpdatedGame.setGenre(loadLastPosition.getGenreId().getName());
+		loadUpdatedGame.setPlatform(loadLastPosition.getPlatformId().getName());
+		loadUpdatedGame.setPublisher(loadLastPosition.getPublisherId().getName());
+		loadUpdatedGame.setId(loadLastPosition.getId()+1); //nueva id a nueva posicion
+		
+		gc.deleteById(idNew);
+		
+		System.out.println("\n A MODIFICAR= "+NewGame.toString()+"\n");
+		System.out.println("\n MODIFICADO = "+NewGame.toString()+"\n");
+		
+		assertTrue(convertedLoadLastPosition != loadUpdatedGame);
+		//assertEquals(gdto, comparedGame);
 	}
+	
+
 }

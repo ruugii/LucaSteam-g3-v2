@@ -90,20 +90,7 @@ public class GameController {
 	//@RequestMapping(method = RequestMethod.GET)
 	public List<GameDTO> findAll() {
 		//@Parameter(description = "ID del estudiante a localizar", required=true)
-		List<Game> games = gameServ.findAll();
-		List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
-		for (Game game : games) {
-			GameDTO aux = new GameDTO();
-			aux.setId(game.getId());
-			aux.setName(game.getName());
-			aux.setYear(game.getYear());
-			aux.setSales(game.getSales());
-			aux.setPlatform(game.getPlatformId().getName());
-			aux.setGenre(game.getGenreId().getName());
-			aux.setPublisher(game.getPublisherId().getName());
-			gamesDTO.add(aux);
-		}
-		return gamesDTO;
+		return gameServ.findAll();
 	}
 
 	//return platformServ.findById(id).orElseThrow(StudentNotFoundException::new);

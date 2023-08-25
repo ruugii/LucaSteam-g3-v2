@@ -1,11 +1,13 @@
 package com.LucaSteam.service;
 
+import com.LucaSteam.model.DTO.GameDTO;
 import com.LucaSteam.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LucaSteam.repository.GameDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,8 +40,21 @@ public class GameServiceImpl implements GameService{
      * @return A list of all games.
      */
     @Override
-    public List<Game> findAll() {
-        return gameDAO.findAll();
+    public List<GameDTO> findAll() {
+        List<Game> games = gameDAO.findAll();
+        List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
+        for (Game game : games) {
+            GameDTO aux = new GameDTO();
+            aux.setId(game.getId());
+            aux.setName(game.getName());
+            aux.setYear(game.getYear());
+            aux.setSales(game.getSales());
+            aux.setPlatform(game.getPlatformId().getName());
+            aux.setGenre(game.getGenreId().getName());
+            aux.setPublisher(game.getPublisherId().getName());
+            gamesDTO.add(aux);
+        }
+        return gamesDTO;
     }
 
     

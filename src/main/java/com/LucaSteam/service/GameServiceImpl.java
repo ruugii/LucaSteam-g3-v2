@@ -10,6 +10,7 @@ import com.LucaSteam.repository.GameDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameServiceImpl implements GameService{
@@ -78,7 +79,7 @@ public class GameServiceImpl implements GameService{
      * @return The found game or null if not found.
      */
     @Override
-    public Game findById(long id) {
+    public Optional<Game> findById(long id) {
         return gameDAO.findById(id);
     }
 

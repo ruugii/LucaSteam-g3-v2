@@ -3,6 +3,7 @@ package com.LucaSteam.repository;
 import com.LucaSteam.model.Game;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.LucaSteam.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,7 +29,7 @@ public interface GameDAO extends JpaRepository<Game, Long> {
      * @param id The ID of the game to retrieve.
      * @return The game with the given ID or null if not found.
      */
-    Game findById(long id);
+    Optional<Game> findById(long id);
 
     List<Game> findAllBygenreId(Genre genre);
 }

@@ -3,6 +3,7 @@ package com.LucaSteam.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.LucaSteam.controller.error.GameNotFoundException;
 import com.LucaSteam.repository.GameDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -141,7 +142,7 @@ public class GameController {
 	@GetMapping("FindById/{id}")
 	public Game findById(@PathVariable long id) {
 		logger.info("------ read (GET) ");
-		return gameServ.findById(id);
+		return gameServ.findById(id).orElseThrow(GameNotFoundException::new);
 	}
 
 }

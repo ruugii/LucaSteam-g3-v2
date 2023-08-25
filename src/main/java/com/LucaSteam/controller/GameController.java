@@ -111,6 +111,7 @@ public class GameController {
 			@PathVariable String genre_name) {
 		logger.info("------ readGenre(GET) ");
 		long id = genreServ.findByName(genre_name).getId();
+		System.out.println(id);
 		return gameServ.findByGenreId(id);
 	}
 

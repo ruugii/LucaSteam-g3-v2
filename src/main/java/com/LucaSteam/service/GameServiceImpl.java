@@ -94,6 +94,7 @@ public class GameServiceImpl implements GameService{
 	@Override
 	public List<GameDTO> findByGenreId(long id) {
 		List<Game> games = gameDAO.findAllByGenreName(id);
+		System.out.println(games.get(0));
         List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
         for (Game game : games) {
             GameDTO aux = new GameDTO();
@@ -106,6 +107,7 @@ public class GameServiceImpl implements GameService{
             aux.setPublisher(game.getPublisherId().getName());
             gamesDTO.add(aux);
         }
+        System.out.println(gamesDTO.get(0));
         return gamesDTO;
 	}
 
